@@ -7,6 +7,33 @@ DATA_DIR = os.path.abspath(os.path.join(__file__, os.path.pardir, os.path.pardir
 IMG_DIR = os.path.join(DATA_DIR, 'raw', 'VOCdevkit', 'VOC2010', 'JPEGImages')
 OUTPUT_DIR = os.path.join(DATA_DIR, 'processed', 'annotations')
 
+label_dict = {
+    'hair': 1,
+    'head': 2,
+    'lear': 3,
+    'leye': 4,
+    'lebrow': 5,
+    'lfoot': 6,
+    'lhand': 7,
+    'llarm': 7,
+    'llleg': 6,
+    'luarm': 7,
+    'luleg': 6,
+    'mouth': 8,
+    'neck': 9,
+    'nose': 10,
+    'rear': 3,
+    'reye': 4,
+    'rebrow': 5,
+    'rfoot': 6,
+    'rhand': 7,
+    'rlarm': 7,
+    'rlleg': 6,
+    'ruarm': 7,
+    'ruleg': 6,
+    'torso': 11
+}
+
 try:
     os.makedirs(OUTPUT_DIR)
 except:
@@ -36,12 +63,11 @@ for ann_file in ann_files:
             continue
 
         parts = person[1][0]
-
         for part in parts:
             part_name, part_ann = part
             part_name = part_name[0]
-            if part_name in ['head', 'hair']:
-                head_mask[part_ann == 1] = 1
+            
+            head_mask[part_ann == 1] = label_dict[part_name]
 
     head_mask_img = Image.fromarray(head_mask)
 

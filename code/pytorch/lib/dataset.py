@@ -1,6 +1,7 @@
 import torch
 from torch.utils.data import Dataset
 import random
+import torchvision.transforms as transforms
 
 from PIL import Image
 import lmdb, sys
@@ -55,7 +56,7 @@ class AlignCollate(object):
     and returns minibatch."""
 
     def __init__(self, mode, labels, mean, std, image_size_height, image_size_width, annotation_size_height, annotation_size_width,
-                 crop_scale, crop_ar, random_cropping=True, horizontal_flipping=True):
+                 crop_scale, crop_ar, random_cropping=True, horizontal_flipping=True, random_jitter=True):
 
         self._mode = mode
 
@@ -72,7 +73,8 @@ class AlignCollate(object):
         self.annotation_size_height = annotation_size_height
         self.annotation_size_width = annotation_size_width
         self.horizontal_flipping = horizontal_flipping
-
+        self.random_jitter = random_jitter
+        
         if self._mode == 'training':
             if self.random_cropping:
                 self.image_random_cropper = ImageUtilities.image_random_cropper_and_resizer(self.image_size_height, self.image_size_width)
@@ -85,6 +87,8 @@ class AlignCollate(object):
                                                                        interpolation=Image.NEAREST)
             if self.horizontal_flipping:
                 self.horizontal_flipper = ImageUtilities.image_random_horizontal_flipper()
+            if self.random_jitter:
+                self.random_jitterer = transforms.ColorJitter(brightness=0.4, contrast=0.4, saturation=0.4, hue=0.1)
         else:
             self.image_resizer = ImageUtilities.image_resizer(self.image_size_height, self.image_size_width)
             self.annotation_resizer = ImageUtilities.image_resizer(self.annotation_size_height, self.annotation_size_width,
@@ -107,6 +111,8 @@ class AlignCollate(object):
                 is_flip = random.random() < 0.5
                 image = self.horizontal_flipper(image, is_flip)
                 annotation = self.horizontal_flipper(annotation, is_flip)
+            if self.random_jitter:
+                image = self.random_jitterer(image)
         else:
             image = self.image_resizer(image)
             annotation = self.annotation_resizer(annotation)            

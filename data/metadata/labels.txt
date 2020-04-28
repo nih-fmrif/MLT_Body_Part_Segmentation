@@ -1,2 +1,12 @@
 0,null
-1,head
+1,hair
+2,head
+3,ear
+4,eye
+5,ebrow
+6,leg
+7,arm
+8,mouth
+9,neck
+10,nose
+11,torso

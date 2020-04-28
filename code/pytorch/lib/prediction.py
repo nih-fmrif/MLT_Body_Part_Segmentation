@@ -44,21 +44,44 @@ class Prediction(object):
         resizer = ImageUtilities.image_resizer(image_height, image_width, interpolation=Image.NEAREST)
         return resizer(prediction)
 
-    def predict(self, image_path):
+    def predict(self, image_path, n_samples = 1):
 
         image, image_height, image_width = self.get_image(image_path)
         image = image.unsqueeze(0)
-
-        prediction = self.model.predict(image)
-        #prediction = self.upsample_prediction(prediction, image_height, image_width)
-        prediction = prediction.squeeze(0)
-        prediction = prediction.data.cpu().numpy()
+        softmax = nn.Softmax2d()
+        for n in range(n_samples):
+            prediction = softmax(self.model.predict(image))
+            print(np.size(prediction))
+            #prediction = self.upsample_prediction(prediction, image_height, image_width)
+            prediction = prediction.squeeze(0)
+            prediction = prediction.data.cpu().numpy()
+            
+            if n == 0:
+                mean = prediction
+                variance = prediction * 0.0
+            else:
+                delta = prediction - mean
+                mean += delta / float(n+1)
+                delta2 = prediction - mean
+                variance += delta*delta2
+                
+        prediction = mean
+        variance = variance/float(n_samples)
+            
         prediction = prediction.argmax(0).astype(np.uint8) #TODO: max 255 classes
+        
+        variance_scaled = variance.sum(0)/variance.max()*255.0
+        variance_scaled = variance_scaled.astype(np.uint8)
+        
+        if np.sum(prediction) == 0:
+            print('HELP!!!')
+        
         prediction_pil = Image.fromarray(prediction)
         prediction_pil = self.upsample_prediction(prediction_pil, image_height, image_width)
-
+        variance_pil = Image.fromarray(variance_scaled)
+        variance_pil = self.upsample_prediction(variance_pil, image_height, image_width)
         image_pil = ImageUtilities.read_image(image_path)
         #prediction_np = prediction.data.cpu().numpy()
         
 
-        return image_pil, prediction_pil
+        return image_pil, prediction_pil, variance_pil, variance

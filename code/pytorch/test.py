@@ -30,7 +30,7 @@ if opt.usegpu:
 test_dataset = SegDataset(opt.lmdb)
 test_align_collate = AlignCollate('test', ms.LABELS, ms.MEAN, ms.STD, ms.IMAGE_SIZE_HEIGHT, ms.IMAGE_SIZE_WIDTH,
                                   ms.ANNOTATION_SIZE_HEIGHT, ms.ANNOTATION_SIZE_WIDTH, ms.CROP_SCALE, ms.CROP_AR,
-                                  random_cropping=ms.RANDOM_CROPPING, horizontal_flipping=ms.HORIZONTAL_FLIPPING)
+                                  random_cropping=ms.RANDOM_CROPPING, horizontal_flipping=ms.HORIZONTAL_FLIPPING,random_jitter=ms.RANDOM_JITTER)
 assert test_dataset
 test_loader = torch.utils.data.DataLoader(test_dataset, batch_size=opt.batchsize, shuffle=False,
                                           num_workers=opt.nworkers, pin_memory=pin_memory, collate_fn=test_align_collate)

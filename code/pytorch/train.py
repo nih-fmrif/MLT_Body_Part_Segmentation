@@ -4,6 +4,7 @@ import torch
 from lib import SegDataset, Model, AlignCollate
 from settings import TrainingSettings
 
+
 ts = TrainingSettings()
 
 parser = argparse.ArgumentParser()
@@ -52,7 +53,7 @@ train_dataset = SegDataset(ts.TRAINING_LMDB)
 train_align_collate = AlignCollate('training', ts.LABELS, ts.MEAN, ts.STD, ts.IMAGE_SIZE_HEIGHT, ts.IMAGE_SIZE_WIDTH,
                                    ts.ANNOTATION_SIZE_HEIGHT, ts.ANNOTATION_SIZE_WIDTH,
                                    ts.CROP_SCALE, ts.CROP_AR, random_cropping=ts.RANDOM_CROPPING,
-                                   horizontal_flipping=ts.HORIZONTAL_FLIPPING)
+                                   horizontal_flipping=ts.HORIZONTAL_FLIPPING,random_jitter=ts.RANDOM_JITTER)
 assert train_dataset
 train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=opt.batchsize, shuffle=True,
                                            num_workers=opt.nworkers, pin_memory=pin_memory, collate_fn=train_align_collate)
@@ -67,7 +68,7 @@ test_loader = torch.utils.data.DataLoader(test_dataset, batch_size=opt.batchsize
                                           num_workers=opt.nworkers, pin_memory=pin_memory, collate_fn=test_align_collate)
 
 # Define Model
-model = Model(ts.LABELS, load_model_path=opt.model, usegpu=opt.usegpu)
+model = Model(ts.LABELS, [opt.batchsize, 3, ts.IMAGE_SIZE_HEIGHT, ts.IMAGE_SIZE_WIDTH], load_model_path=opt.model, usegpu=opt.usegpu)
 
 # Train Model
 model.fit(ts.CRITERION, ts.LEARNING_RATE, ts.WEIGHT_DECAY, ts.CLIP_GRAD_NORM, ts.LR_DROP_FACTOR, ts.LR_DROP_PATIENCE, ts.OPTIMIZE_BG, ts.OPTIMIZER,

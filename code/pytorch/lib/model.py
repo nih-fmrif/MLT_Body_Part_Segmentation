@@ -12,14 +12,14 @@ from dice import DiceLoss, DiceCoefficient
 
 class Model(object):
 
-    def __init__(self, labels, load_model_path='', usegpu=True):
+    def __init__(self, labels, input_shape, load_model_path='', usegpu=True):
 
         self.labels = labels
         self.n_classes = len(labels)
         self.load_model_path = load_model_path
         self.usegpu = usegpu
-
-        self.model = Architecture(self.n_classes, usegpu=self.usegpu)
+        self.input_shape = input_shape
+        self.model = Architecture(self.n_classes, self.input_shape, usegpu=self.usegpu)
 
         self.__load_weights()
 
@@ -183,10 +183,11 @@ class Model(object):
                 gpu_annotations_criterion_dice = gpu_annotations.permute(0, 3, 1, 2).contiguous()
                 cost_dice = self.criterion_dice(predictions, gpu_annotations_criterion_dice)
                 cost = cost_ce + cost_dice
+            cost += self.model.regularisation_loss()
         else:
             gpu_annotations_criterion_dice = gpu_annotations.permute(0, 3, 1, 2).contiguous()
             cost = self.criterion_dice_coeff(predictions, gpu_annotations_criterion_dice)
-
+        
         if mode == 'training':
             self.model.zero_grad()
             cost.backward()
@@ -223,6 +224,7 @@ class Model(object):
         accuracy = n_correct / n_total
 
         dice_coefficients_str = ''
+
         for i, coeff in enumerate(dice_coefficients):
             label_name = self.labels[self.labels[:, 0].astype('int') == i][0, 1]
             if i % 3 == 0:

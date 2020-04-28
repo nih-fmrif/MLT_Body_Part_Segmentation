@@ -28,7 +28,6 @@ ms = ModelSettings()
 model = Model(ms.LABELS, load_model_path=model_path, usegpu=opt.usegpu)
 prediction = Prediction(ms.IMAGE_SIZE_HEIGHT, ms.IMAGE_SIZE_WIDTH, ms.MEAN, ms.STD, model)
 image, pred = prediction.predict(image_path)
-
 image_name = os.path.splitext(os.path.basename(image_path))[0]
 image.save(os.path.join(output_path, image_name + '.png'))
 pred.save(os.path.join(output_path, image_name + '-mask.png'))
