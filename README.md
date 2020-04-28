@@ -1,6 +1,6 @@
 # DNN-based Human Body Part Segmentation Tool for Images of Natural Scenes
 
-For details, please refer to the accompanying arxiv docuemt ().
+For details, please refer to the accompanying arxiv docuemt (). If you use this tool in a publication, please cite the arxiv document.
 
 # Setup
 
