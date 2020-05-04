@@ -3,7 +3,6 @@
 For details, please refer to the accompanying arxiv docuemt (). If you use this tool in a publication, please cite the arxiv document.
 
 # Setup
-
 * Clone this repository : `git clone --recursive https://github.com/nih-fmrif/MLT_Body_Part_Segmentation.git`
 * Go to the "body_part_segmentation/code/pytorch" : `cd body_part_segmentation/code/pytorch`
 * Download and install [Anaconda](https://www.anaconda.com/download/) or [Miniconda](https://conda.io/miniconda.html)
