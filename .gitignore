@@ -1,9 +1,13 @@
 data/processed
 data/raw
+data/VOCdevkit/
 #!data/metadata/
 #data/metadata/*.lst
 scratch/
 models/
+outputs/
+code/pytorch/outputs/
+code/pytorch/movies/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
