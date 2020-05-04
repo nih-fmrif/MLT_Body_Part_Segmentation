@@ -18,5 +18,5 @@ For details, please refer to the accompanying arxiv docuemt (). If you use this 
 # Training
 * Download [Pascal-Part Annotations](http://www.stat.ucla.edu/~xianjie.chen/pascal_part_dataset/pascal_part.html) and [Pascal VOC 2010 Dataset](http://host.robots.ox.ac.uk/pascal/VOC/voc2010/index.html#devkit) to "body_part_segmentation/data/raw" then extract tar files.
 * Go to the "body_part_segmentation/code/pytorch" : `cd body_part_segmentation/code/pytorch`
-* Run `OMP_NUM_THREADS=8 CUDA_VISIBLE_DEVICES={GPU_NUM} python train.py - -usegpu`
+* Run `OMP_NUM_THREADS={CPU_NUM} CUDA_VISIBLE_DEVICES={GPU_NUM} python train.py - -usegpu`
 
