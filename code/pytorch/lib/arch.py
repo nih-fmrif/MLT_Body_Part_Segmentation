@@ -162,24 +162,24 @@ class Architecture(nn.Module):
         self.conv53d = nn.Conv2d(512, 512, kernel_size=3, padding=1)
         self.bn53d = nn.BatchNorm2d(512, momentum= batchNorm_momentum)
         
-        self.conv52d = ConcreteDropout(nn.Conv2d(512, 512, kernel_size=3, padding=1),[input_shape[0], 512, h, w])
-        #self.conv52d = nn.Conv2d(512, 512, kernel_size=3, padding=1)
+        #self.conv52d = ConcreteDropout(nn.Conv2d(512, 512, kernel_size=3, padding=1),[input_shape[0], 512, h, w])
+        self.conv52d = nn.Conv2d(512, 512, kernel_size=3, padding=1)
         self.bn52d = nn.BatchNorm2d(512, momentum= batchNorm_momentum)
         
         #self.conv51d = ConcreteDropout(nn.Conv2d(512, 512, kernel_size=3, padding=1),[input_shape[0], 512, h, w])
         self.conv51d = nn.Conv2d(512, 512, kernel_size=3, padding=1)
         self.bn51d = nn.BatchNorm2d(512, momentum= batchNorm_momentum)
 
-        self.conv43d = ConcreteDropout(nn.Conv2d(512, 512, kernel_size=3, padding=1),[input_shape[0], 512, h, w])
-        #self.conv43d = nn.Conv2d(512, 512, kernel_size=3, padding=1)
+        #self.conv43d = ConcreteDropout(nn.Conv2d(512, 512, kernel_size=3, padding=1),[input_shape[0], 512, h, w])
+        self.conv43d = nn.Conv2d(512, 512, kernel_size=3, padding=1)
         self.bn43d = nn.BatchNorm2d(512, momentum= batchNorm_momentum)        
         
         #self.conv42d = ConcreteDropout(nn.Conv2d(512, 512, kernel_size=3, padding=1),[input_shape[0], 512, h, w])
         self.conv42d = nn.Conv2d(512, 512, kernel_size=3, padding=1)
         self.bn42d = nn.BatchNorm2d(512, momentum= batchNorm_momentum)
         
-        self.conv41d = ConcreteDropout(nn.Conv2d(512, 256, kernel_size=3, padding=1),[input_shape[0], 256, h, w])
-        #self.conv41d = nn.Conv2d(512, 256, kernel_size=3, padding=1)
+        #self.conv41d = ConcreteDropout(nn.Conv2d(512, 256, kernel_size=3, padding=1),[input_shape[0], 256, h, w])
+        self.conv41d = nn.Conv2d(512, 256, kernel_size=3, padding=1)
         self.bn41d = nn.BatchNorm2d(256, momentum= batchNorm_momentum)
 
         #self.conv33d = ConcreteDropout(nn.Conv2d(256, 256, kernel_size=3, padding=1),[input_shape[0], 256, h, w])

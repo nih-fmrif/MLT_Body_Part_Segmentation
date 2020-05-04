@@ -12,14 +12,14 @@ class TrainingSettings(ModelSettings):
         self.TRAIN_CNN = True
 
         self.OPTIMIZER = 'Adam'   # one of : 'RMSprop', 'Adam', 'Adadelta', 'SGD'
-        self.LEARNING_RATE = 0.001
+        self.LEARNING_RATE = 0.0001
         self.LR_DROP_FACTOR = 0
         self.LR_DROP_PATIENCE = 20
         self.WEIGHT_DECAY = 0      # use 0 to disable it
-        self.CLIP_GRAD_NORM = 0      # max l2 norm of gradient of parameters - use 0 to disable it
+        self.CLIP_GRAD_NORM = 1      # max l2 norm of gradient of parameters - use 0 to disable it
         self.HORIZONTAL_FLIPPING = True
         self.RANDOM_JITTER = True
-        self.CRITERION = 'Dice'       # One of 'CE', 'Dice', 'Multi'
+        self.CRITERION = 'CE'       # One of 'CE', 'Dice', 'Multi'
         self.OPTIMIZE_BG = False
 
-        self.SEED = 13
+        self.SEED = 42
