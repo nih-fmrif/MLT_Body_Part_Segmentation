@@ -50,9 +50,9 @@ for image_path in image_paths:
     vis_var = Image.fromarray(vis_var_array.astype('uint8'))
     vis_var = ImageOps.colorize(vis_var,(0,0,255),(255,0,0))
     
-    image.save(os.path.join(output_path, image_name + '.png'))
+    #image.save(os.path.join(output_path, image_name + '.png'))
     pred.save(os.path.join(output_path, image_name + '-pred.png'))
     var.save(os.path.join(output_path, image_name + '-var.png'))
-    vis_pred.save(os.path.join(output_path, image_name + '-vis-pred.png'))
-    vis_var.save(os.path.join(output_path, image_name + '-vis-var.png'))
-    savemat(os.path.join(output_path, image_name + '-var.mat'),{'variance': v})
+    #vis_pred.save(os.path.join(output_path, image_name + '-vis-pred.png'))
+    #vis_var.save(os.path.join(output_path, image_name + '-vis-var.png'))
+    #savemat(os.path.join(output_path, image_name + '-var.mat'),{'variance': v})
