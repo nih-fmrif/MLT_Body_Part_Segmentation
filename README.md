@@ -9,7 +9,7 @@ For details, please refer to the accompanying arxiv docuemt (). If you use this 
 * Create environment : `conda env create -f pytorch_conda_environment.yml`
 
 # Segmenting Images
-* Download the trained DNN ().
+* Download the trained DNN (https://doi.org/10.35092/yhjc.12245324).
 * Extract the file `model_175_0.561689198017_0.894362765766.pth` and place it in `body_part_segmentation/code/pytorch/models`
 * Go to the "body_part_segmentation/code/pytorch" : `cd body_part_segmentation/code/pytorch`
 * Run `OMP_NUM_THREADS={CPU_NUM} CUDA_VISIBLE_DEVICES={GPU_NUM} python pred_folder.py --image_folder={IMAGE_FOLDER_PATH} --output={OUTPUT_FOLDER_PATH}  --model="models/model_175_0.561689198017_0.894362765766.pth" --usegpu --image_prefix={".png" or ".jpg"}`
