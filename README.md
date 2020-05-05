@@ -13,6 +13,9 @@ For details, please refer to the accompanying arxiv docuemt (). If you use this 
 # Segment Example
 * Go to the "body_part_segmentation/code/pytorch" : `cd body_part_segmentation/code/pytorch`
 * Run `OMP_NUM_THREADS={CPU_NUM} CUDA_VISIBLE_DEVICES={GPU_NUM} python pred_folder.py --image_folder=examples/inputs/ --output=examples/outputs/  --model=models/model_175_0.561689198017_0.894362765766.pth --usegpu --image_prefix={.png or .jpg}`
+* `body_part_segmentation/code/pytorch/examples/outputs/example-pred.png` will contain the predicted label for each pixel in the example image
+* `body_part_segmentation/code/pytorch/examples/outputs/example-var.png` will contain the model uncertatiny for each pixel in the example image
+
 
 # Segment Folder of Images
 * Go to the "body_part_segmentation/code/pytorch" : `cd body_part_segmentation/code/pytorch`
