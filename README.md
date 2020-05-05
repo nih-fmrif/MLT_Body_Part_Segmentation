@@ -7,12 +7,16 @@ For details, please refer to the accompanying arxiv docuemt (). If you use this 
 * Go to the "body_part_segmentation/code/pytorch" : `cd body_part_segmentation/code/pytorch`
 * Download and install [Anaconda](https://www.anaconda.com/download/) or [Miniconda](https://conda.io/miniconda.html)
 * Create environment : `conda env create -f pytorch_conda_environment.yml`
-
-# Segmenting Images
-* Download the trained DNN (https://doi.org/10.35092/yhjc.12245324).
+* Download the trained DNN (https://doi.org/10.35092/yhjc.12245324)
 * Extract the file `model_175_0.561689198017_0.894362765766.pth` and place it in `body_part_segmentation/code/pytorch/models`
+
+# Segment Example
 * Go to the "body_part_segmentation/code/pytorch" : `cd body_part_segmentation/code/pytorch`
-* Run `OMP_NUM_THREADS={CPU_NUM} CUDA_VISIBLE_DEVICES={GPU_NUM} python pred_folder.py --image_folder={IMAGE_FOLDER_PATH} --output={OUTPUT_FOLDER_PATH}  --model="models/model_175_0.561689198017_0.894362765766.pth" --usegpu --image_prefix={".png" or ".jpg"}`
+* Run `OMP_NUM_THREADS={CPU_NUM} CUDA_VISIBLE_DEVICES={GPU_NUM} python pred_folder.py --image_folder=examples/inputs/ --output=examples/outputs/  --model=models/model_175_0.561689198017_0.894362765766.pth --usegpu --image_prefix={.png or .jpg}`
+
+# Segment Folder of Images
+* Go to the "body_part_segmentation/code/pytorch" : `cd body_part_segmentation/code/pytorch`
+* Run `OMP_NUM_THREADS={CPU_NUM} CUDA_VISIBLE_DEVICES={GPU_NUM} python pred_folder.py --image_folder={IMAGE_FOLDER_PATH} --output={OUTPUT_FOLDER_PATH}  --model=models/model_175_0.561689198017_0.894362765766.pth --usegpu --image_prefix={.png or .jpg}`
 
 # Training
 * Download [Pascal-Part Annotations](http://www.stat.ucla.edu/~xianjie.chen/pascal_part_dataset/pascal_part.html) and [Pascal VOC 2010 Dataset](http://host.robots.ox.ac.uk/pascal/VOC/voc2010/index.html#devkit) to "body_part_segmentation/data/raw" then extract tar files.
