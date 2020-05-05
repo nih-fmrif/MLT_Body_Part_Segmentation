@@ -5,7 +5,6 @@ data/VOCdevkit/
 #data/metadata/*.lst
 scratch/
 models/
-outputs/
 code/pytorch/outputs/
 code/pytorch/movies/
 
