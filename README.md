@@ -1,5 +1,5 @@
 # DNN-based Human Body Part Segmentation Tool for Images of Natural Scenes
-A trained Deep Neural Network (DNN) tool for automatic segmentation of human body parts in images of natural scenes. This tool was built to improve eye tracking data analysis. For details, please refer to the accompanying arxiv document (). If you use this tool in a publication, please cite the arxiv document.
+A Deep Neural Network (DNN) tool for automatic segmentation of human body parts in images of natural scenes. This tool was built to improve eye tracking data analysis. For details, please refer to the accompanying arxiv document (). If you use this tool in a publication, please cite the arxiv document.
 
 # Setup
 * Clone this repository : `git clone --recursive https://github.com/nih-fmrif/MLT_Body_Part_Segmentation.git`
