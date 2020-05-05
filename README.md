@@ -17,7 +17,7 @@ For details, please refer to the accompanying arxiv docuemt (). If you use this 
 * `body_part_segmentation/code/pytorch/examples/outputs/example-var.png` will contain the model uncertatiny for each pixel in the example image
 
 
-# Segment Folder of Images
+# Segment Images in a Folder
 * Go to the "body_part_segmentation/code/pytorch" : `cd body_part_segmentation/code/pytorch`
 * Run `OMP_NUM_THREADS={CPU_NUM} CUDA_VISIBLE_DEVICES={GPU_NUM} python pred_folder.py --image_folder={IMAGE_FOLDER_PATH} --output={OUTPUT_FOLDER_PATH}  --model=models/model_175_0.561689198017_0.894362765766.pth --usegpu --image_prefix={.png or .jpg}`
 
